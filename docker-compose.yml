@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  launch_service:
+    build: ./backend/launch_service
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=sqlserver://user:password@localhost/carrefour_db
+    depends_on:
+      - db
+
+  balance_service:
+    build: ./backend/balance_service
+    depends_on:
+      - db
+    environment:
+      - PUBSUB_TOPIC=launch_topic
+
+  report_service:
+    build: ./backend/report_service
+    ports:
+      - "5001:5001"
+    depends_on:
+      - db
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourPassword123
+    ports:
+      - "1433:1433"
+
+networks:
+  default:
+    external:
+      name: carrefour_network
