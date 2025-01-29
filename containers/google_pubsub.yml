@@ -1,0 +1,15 @@
+apiVersion: pubsub.googleapis.com/v1
+kind: Topic
+metadata:
+  name: launch_topic
+spec:
+  name: projects/your-gcp-project-id/topics/launch_topic
+---
+apiVersion: pubsub.googleapis.com/v1
+kind: Subscription
+metadata:
+  name: launch_subscription
+spec:
+  topic: projects/your-gcp-project-id/topics/launch_topic
+  pushConfig:
+    pushEndpoint: "http://balance-service:5002"
