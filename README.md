@@ -19,11 +19,19 @@ Isso irá inicializar os microsserviços (Lançamento de Valores, Atualização 
 3. Executando os microsserviços
 O serviço de Lançamento de Valores estará disponível em http://localhost:5000/launch para registrar lançamentos.
 O serviço de Geração de Relatórios estará disponível em http://localhost:5001/generate_report para gerar relatórios.
+O serviço de Atualização de Saldo estará rodando de forma assíncrona.
 
-4. Acessando o banco de dados SQL Server
+5. Acessando o banco de dados SQL Server
 Você pode acessar o SQL Server em localhost:1433 com o usuário sa e a senha YourPassword123.
 
 5.Parar os containers
 Quando terminar, basta parar os containers com o comando:
 docker-compose down
+
+6. Testes Unitários
+Para rodar os testes, execute:
+
+bash
+pytest tests/
+
 
