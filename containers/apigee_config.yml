@@ -1,0 +1,11 @@
+apiVersion: apigee.googleapis.com/v1
+kind: API
+metadata:
+  name: launch-api
+spec:
+  target:
+    url: "http://launch-service:5000/launch"
+  proxy:
+    url: "http://apigee-proxy/launch"
+    security:
+      apiKeyRequired: true
